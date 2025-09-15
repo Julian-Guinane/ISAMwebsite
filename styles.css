@@ -158,6 +158,32 @@ section h2 {
   margin: 0 auto;
 }
 
+/* Demo / video container: center and make embedded iframes responsive */
+.video-container {
+  display: flex;
+  flex-wrap: wrap;      /* allow multiple videos to wrap on smaller screens */
+  justify-content: center; /* center the row of videos */
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.video-container iframe {
+  width: 100%;         /* default to full width of the available flex item */
+  max-width: 560px;    /* don't grow beyond the original embed width */
+  height: calc(560px * 9 / 16); /* maintain 16:9 aspect ratio as a fallback */
+  border: 0;
+}
+
+/* When viewport is narrow, stack videos full-width with reduced height */
+@media (max-width: 700px) {
+  .video-container iframe {
+    max-width: 100%;
+    height: calc(100vw * 9 / 16); /* scale height to viewport width */
+  }
+}
+
 .value {
   background: #f5f7fa;
   border-left: 4px solid #4f6fe6;
