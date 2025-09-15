@@ -311,8 +311,10 @@ section h2 {
 
 /* Team grid */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* Use flex so the last row's items can be centered when it doesn't fill the row */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* center items on each row */
   gap: 30px;
   max-width: 1000px;
   margin: 0 auto;
@@ -320,6 +322,9 @@ section h2 {
 
 .team-member {
   text-align: center;
+  /* Give a flexible basis that mirrors the previous minmax(200px, 1fr) behavior */
+  flex: 1 1 200px; /* grow, shrink, basis */
+  max-width: 240px; /* prevent items from stretching too wide on large screens */
 }
 
 .team-member img {
@@ -444,5 +449,12 @@ footer {
     flex-wrap: wrap;
     gap: 15px;
     margin-top: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .team-member {
+    flex-basis: 100%;
+    max-width: 100%;
   }
 }
